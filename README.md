@@ -82,7 +82,7 @@ Here's how you can configure scheduled backups using Task Scheduler in Windows t
 
 - Click the "New Action" button.
 - In the "Action" field, select "Start a program".
-- In the "Program/script" field, browse to the location of your `startbackup.ps1` script file.
+- In the "Program/script" field, type `powershell` and in the *Add arguments (optional)* field add the following text: `-NoExit -Command "Set-Location <THE_BACKUP_SCRIPTS_FOLDER>; .\startbackup.ps1; exit;"`
 
 **6. Review and Finish:**
 
