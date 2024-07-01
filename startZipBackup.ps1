@@ -41,7 +41,7 @@ function StartBackup {
 
   Remove-Item -Path $zipFile
 
-  Start-Sleep -Seconds 8
+  Start-Sleep -Seconds 5
 }
 
 StartBackup

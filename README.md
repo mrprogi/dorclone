@@ -44,7 +44,13 @@ PowerShell
 
 The script will upload the contents of the folder configured in the `SourceFolder` parameter if younger than the value specified in the `MaxAge` parameter.
 
-#### b.) Compressing and uploading a backup file to Spaces - startZipBackup.ps1
+#### b.) Compressing each files in the source folder and uploading to Spaces - startIncrementalZipBackup.ps1
+
+**Right** click on the *startIncrementalZipBackup.ps1* file and click on `Run with PowerShell`.
+
+The script will compress each files in your chosen directory and upload it to your DigitalOcean Spaces bucket. It will display messages indicating the progress and completion of the backup process.
+
+#### c.) Compressing the source folder and uploading a backup file to Spaces - startZipBackup.ps1
 
 **Right** click on the *startZipBackup.ps1* file and click on `Run with PowerShell`.
 
@@ -52,7 +58,7 @@ The script will compress your chosen directory and upload it to your DigitalOcea
 
 ## Scheduling Backups (Optional)
 
-Here's how you can configure scheduled backups using Task Scheduler in Windows to run your `startbackup.ps1` or `startZipBackup,ps1` script:
+Here's how you can configure scheduled backups using Task Scheduler in Windows to run your `startbackup.ps1`, `startIncrementalZipBackup.ps1` or `startZipBackup,ps1` script:
 
 **1. Open Task Scheduler:**
 
@@ -83,6 +89,8 @@ Here's how you can configure scheduled backups using Task Scheduler in Windows t
 - Click the "New Action" button.
 - In the "Action" field, select "Start a program".
 - In the "Program/script" field, type `powershell` and in the *Add arguments (optional)* field add the following text: `-NoExit -Command "Set-Location <THE_BACKUP_SCRIPTS_FOLDER>; .\startbackup.ps1; exit;"`
+
+> **_NOTE:_** you can repleace the _startbackup.ps1_ file with the other backup solutions specified above, based on your needs.
 
 **6. Review and Finish:**
 
