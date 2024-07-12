@@ -49,7 +49,7 @@ function CompressFiles {
         New-Item -Path $tempFolder -ItemType Directory | Out-Null
     }
 
-    Get-ChildItem -Path $sourceFolder -Recurse | Where-Object {
+    Get-ChildItem -Path $sourceFolder | Where-Object {
         ($_.LastWriteTime -ge $cutoffDate)
     } | ForEach-Object {
         $destinationPath = Join-Path -Path $tempFolder -ChildPath ($_.FullName.Replace($sourceFolder, '') + ".zip")
