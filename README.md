@@ -1,6 +1,6 @@
 # Backup System Documentation
 
-This document explains how to use the provided scripts (`startbackup.ps1`, `startZipBackup.ps1`) to automate backups of your desired folder or file to DigitalOcean Spaces using rclone.
+This document explains how to use the provided scripts (`startbackup.ps1`, `startIncrementalZipBackup.ps1`, `startZipBackup.ps1`) to automate backups of your desired folder or file to DigitalOcean Spaces using rclone.
 
 ## Requirements
 
