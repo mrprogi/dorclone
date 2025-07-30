@@ -26,7 +26,7 @@ This document explains how to use the provided scripts (`startbackup.ps1`, `star
 
 ### 2. Install *rclone* (if needed):
 
-If you don't have *rclone* installed into your project's root folder, you can use the `install.ps1` script to download and install it. However, ensure you have downloaded the appropriate and latest version for your Windows architecture (32-bit or 64-bit) from the official *rclone* [website](https://rclone.org/downloads/).
+If you don't have *rclone* or *7-Zip* installed into your project's root folder, you can use the `install.ps1` script to download and install it. However, ensure you have downloaded the appropriate and latest version for your Windows architecture (32-bit or 64-bit) from the official *rclone* [website](https://rclone.org/downloads/).
 
 ### 3. Run the Backup Script:
 

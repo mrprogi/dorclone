@@ -29,9 +29,7 @@ function InstallRclone {
 
   Write-Output "Downloading rclone..."
 
-  $webClient = New-Object System.Net.WebClient
   try {
-    # $webClient.DownloadFile($Params.RcloneDownloadUrl, $Params.InstallDirectory)
     Invoke-WebRequest -Uri $Params.RcloneDownloadUrl -OutFile ".\rclone.zip"
     Write-Output "Downloaded file: $($Params.RcloneDownloadUrl)"
     Expand-Archive -Path ".\rclone.zip" -DestinationPath ".\rclone" -Force
@@ -45,6 +43,27 @@ function InstallRclone {
   Write-Output "rclone downloaded successfully."
 }
 
+# Function to install 7-Zip (placeholder for actual download logic)
+function Install7Zip {
+  param (
+    [hashtable]$Params
+  )
+
+  Write-Output "Downloading 7-Zip..."
+
+  try {
+    Invoke-WebRequest -Uri $Params.SevenZipDownloadUrl -OutFile ".\7z.exe"
+    Write-Output "Downloaded file: $($Params.SevenZipDownloadUrl)"
+    Start-Process -FilePath ".\7z.exe" -ArgumentList "/S" -Wait
+    Write-Output "Installed 7-Zip"
+  } catch {
+    Write-Error "Error downloading file: ($_.Exception.Message)"
+    Exit-PSSession
+  }
+
+  Write-Output "7-Zip downloaded successfully."
+}
+
 # Main function to run the installer
 function RunInstaller {
   # Read parameters from params.conf files
@@ -54,6 +73,11 @@ function RunInstaller {
   # Install rClone if it doesn't exist
   if (-not (Test-Path .\rclone)) {
     InstallRclone -Params $Params
+  }
+
+  # Install 7-Zip if it doesn't exist
+  if (-not (Test-Path .\7z.exe)) {
+    Install7Zip -Params $Params
   }
 
   Copy-Item .\rclone.conf $Params.RcloneBinaryPath -Force

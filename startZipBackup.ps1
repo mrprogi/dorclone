@@ -31,7 +31,13 @@ function StartBackup {
 
   $currentDate = Get-Date -Format yyyyMMdd
   $zipFile = ".\backup.$currentDate.zip"
-  Compress-Archive -Path $Params.SourceFolder -DestinationPath $zipFile -CompressionLevel Optimal
+
+  if (-not (Test-Path .\7z.exe)) {
+      Write-Output "Download the 7-Zip binary running the install.ps1 script"
+      Exit 1
+  }
+
+  & .\7z.exe a $zipFile $Params.SourceFolder
 
   $backupCommand = "$($Params.RcloneBinaryPath)\rclone.exe copy -P $($zipFile) dyntellbackups:$($Params.DestinationFolder)"
 

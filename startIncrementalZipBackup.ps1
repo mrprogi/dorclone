@@ -58,7 +58,7 @@ function CompressFiles {
             New-Item -Path $destinationDir -ItemType Directory | Out-Null
         }
         Write-Output "Compressing $($_.FullName) to $destinationPath"
-        Compress-Archive -Path $_.FullName -DestinationPath $destinationPath
+        & .\7z.exe a $destinationPath $_.FullName
     }
 }
 
@@ -70,6 +70,11 @@ function StartBackup {
 
     if (-not $Params.MaxAge) {
         Write-Error "Error: Missing mandatory parameter 'MaxAge' in params.conf"
+        Exit 1
+    }
+
+    if (-not (Test-Path .\7z.exe)) {
+        Write-Output "Download the 7-Zip binary running the install.ps1 script"
         Exit 1
     }
 
